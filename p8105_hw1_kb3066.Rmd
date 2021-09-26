@@ -5,38 +5,16 @@ date: "9/22/2021"
 output: github_document
 ---
 
-important - problem 2, never include install.packages() into r chunk knitted file 
-
-use mean(pull(mtcars,mpg)) and not mean(mtcars$mpg)
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 link to repo: https://github.com/kboyer-ops/p8105_hw1_kb3066.git 
 
-
-his problem is intended to emphasize variable types and introduce coercion; some awareness of how R treats numeric, character, and factor variables is necessary for working with these data types in practice.
-
-Create a data frame comprised of:
-
-a random sample of size 10 from a standard Normal distribution
-a logical vector indicating whether elements of the sample are greater than 0
-a character vector of length 10
-a factor vector of length 10, with 3 different factor “levels”
-
-Try to take the mean of each variable in your dataframe. What works and what doesn’t?
-
-Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
-
-In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
-
-
 ## Loading packages 
 ```{r}
 library(tidyverse)
 ```
-
 
 ## Problem 1
 
@@ -70,13 +48,6 @@ Converting the logical and factor vector to a numeric before taking the mean is 
 
 ## Problem 2 
 
-the data in this dataset, including names / values of important variables
-the size of the dataset (using nrow and ncol)
-the mean flipper length
-Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable (adding color = ... inside of aes in your ggplot code should help).
-
-Export your first scatterplot to your project directory using ggsave.
-
 Loading the penguins dataset 
 ```{r}
 data("penguins", package = "palmerpenguins")
@@ -85,20 +56,23 @@ data("penguins", package = "palmerpenguins")
 Short description of penguins dataset 
 ```{r}
 head(penguins)
-Hmisc::describe(penguins)
 
 nrow(penguins)
 ncol(penguins)
 
 mean(pull(penguins,flipper_length_mm), na.rm = TRUE)
 ```
+```{r, eval = FALSE}
+Hmisc::describe(penguins)
+```
+
 The penguins dataset has 344 rows and 8 columns. 
 The column names are species (factor of 3), island (factor of 3), bill length (number in mm), bill depth (number in mm), flipper length (number in mm), body mass (number in g), sex (factor of 2), and year (factor of 3. 
 The mean flipper length is 200.9 mm. 
 
 
 Scatterplot of flipper length vs. bill length 
-```{r}
+```{r, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y =flipper_length_mm , color = species)) + geom_point()
 ggsave("hw1_scatterplot.pdf")
 ```
