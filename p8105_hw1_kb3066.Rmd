@@ -37,13 +37,14 @@ mean(pull(data_p1,log_vec))
 mean(pull(data_p1,char_vec))
 mean(pull(data_p1,fac_vec))
 ```
-Taking the mean of the logical vector, character vector, and the factor vector was unsuccessful. 
 
 ```{r, eval = FALSE}
 as.numeric(pull(data_p1,log_vec))
 as.numeric(pull(data_p1,char_vec))
 as.numeric(pull(data_p1,fac_vec))
 ```
+Taking the mean of the logical vector, character vector, and the factor vector was unsuccessful.
+
 Converting the logical and factor vector to a numeric before taking the mean is successful. True/false in the logical vector were converted to 1 and 0, respectively, so the mean was able to be calculated. Each level in the factor vecter were assigned a number (1, 2, or 3), which allowed us to find the mean. This could not happen with the character vector, so converting it to a numeric and trying to calculate the mean were unsuccessful. 
 
 ## Problem 2 
@@ -61,15 +62,12 @@ nrow(penguins)
 ncol(penguins)
 
 mean(pull(penguins,flipper_length_mm), na.rm = TRUE)
-```
-```{r, eval = FALSE}
-Hmisc::describe(penguins)
-```
 
+summary(penguins)
+```
 The penguins dataset has 344 rows and 8 columns. 
 The column names are species (factor of 3), island (factor of 3), bill length (number in mm), bill depth (number in mm), flipper length (number in mm), body mass (number in g), sex (factor of 2), and year (factor of 3. 
 The mean flipper length is 200.9 mm. 
-
 
 Scatterplot of flipper length vs. bill length 
 ```{r, warning = FALSE}
